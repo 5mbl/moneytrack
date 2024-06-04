@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "922001546244",
+    "project_id": "moneytrack-52928",
+    "storage_bucket": "moneytrack-52928.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922001546244:android:a0aea14e7e09b3a05de951",
+        "android_client_info": {
+          "package_name": "com.app.MoneyTrack"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0umm6IB7oqDzg9_Xyr9V76Lo8TaUljU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922001546244:android:bdb58cb10162c0a15de951",
+        "android_client_info": {
+          "package_name": "com.app.moneytrack2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0umm6IB7oqDzg9_Xyr9V76Lo8TaUljU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922001546244:android:a9a339d05d4a01b25de951",
+        "android_client_info": {
+          "package_name": "com.app.moneytrack_newest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0umm6IB7oqDzg9_Xyr9V76Lo8TaUljU8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
