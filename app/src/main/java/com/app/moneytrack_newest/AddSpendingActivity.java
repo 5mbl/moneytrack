@@ -1,5 +1,6 @@
 package com.app.moneytrack_newest;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -44,6 +45,16 @@ public class AddSpendingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 saveSpending();
+            }
+        });
+
+        Button buttonGoBack = findViewById(R.id.buttonGoBack);
+        buttonGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddSpendingActivity.this, MainMenuActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }

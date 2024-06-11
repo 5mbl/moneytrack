@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -59,7 +60,8 @@ public class MainMenuActivity extends AppCompatActivity {
         buttonViewSpendings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Intent to view spendings activity
+                Intent intent = new Intent(MainMenuActivity.this, ViewTransactionsActivity.class);
+                startActivity(intent);
             }
         });
 

@@ -36,5 +36,8 @@
         <activity
             android:name=".AddIncomeActivity"
             android:exported="true" />
+
+        <activity android:name=".ViewTransactionsActivity"
+            android:exported="true" />
     </application>
 </manifest>
