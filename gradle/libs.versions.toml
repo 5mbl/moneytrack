@@ -11,8 +11,11 @@ googleServices = "4.4.1"
 firebaseAuth = "23.0.0"
 firebaseDatabase = "21.0.0"
 firebaseFirestore = "25.0.0"
+mpandroidchart = "v3.1.0"
 
 [libraries]
+mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
+
 junit = { group = "junit", name = "junit", version.ref = "junit" }
 ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "junitVersion" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espressoCore" }
@@ -27,4 +30,3 @@ firebase-firestore = { group = "com.google.firebase", name = "firebase-firestore
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
-

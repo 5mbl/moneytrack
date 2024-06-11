@@ -9,6 +9,7 @@ pluginManagement {
         }
         mavenCentral()
         gradlePluginPortal()
+        maven("https://jitpack.io") // JitPack-Repository hinzufügen
     }
 }
 dependencyResolutionManagement {
@@ -16,9 +17,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        maven("https://jitpack.io") // JitPack-Repository hinzufügen
     }
 }
 
 rootProject.name = "MoneyTrack_newest"
 include(":app")
- 

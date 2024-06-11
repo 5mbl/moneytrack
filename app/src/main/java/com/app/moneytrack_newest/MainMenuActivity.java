@@ -15,7 +15,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class MainMenuActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
-    Button buttonAddSpending, buttonViewSpendings, buttonLogout, buttonAddIncome;
+    Button buttonAddSpending, buttonViewSpendings, buttonLogout, buttonAddIncome, buttonViewChart;
     TextView textViewUserDetails;
     FirebaseUser user;
 
@@ -30,6 +30,7 @@ public class MainMenuActivity extends AppCompatActivity {
         buttonViewSpendings = findViewById(R.id.btn_view_spendings);
         buttonLogout = findViewById(R.id.btn_logout);
         buttonAddIncome = findViewById(R.id.btn_add_income);
+        buttonViewChart = findViewById(R.id.btn_view_chart);
         textViewUserDetails = findViewById(R.id.user_details);
 
         user = auth.getCurrentUser();
@@ -38,7 +39,7 @@ public class MainMenuActivity extends AppCompatActivity {
             startActivity(intent);
             finish();
         } else {
-            textViewUserDetails.setText(user.getEmail());
+            textViewUserDetails.setText("👤 " + user.getEmail());
         }
 
         buttonAddSpending.setOnClickListener(new View.OnClickListener() {
@@ -61,6 +62,14 @@ public class MainMenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainMenuActivity.this, ViewTransactionsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonViewChart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainMenuActivity.this, ChartActivity.class);
                 startActivity(intent);
             }
         });

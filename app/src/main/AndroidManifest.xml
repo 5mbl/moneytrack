@@ -39,5 +39,10 @@
 
         <activity android:name=".ViewTransactionsActivity"
             android:exported="true" />
+
+        <activity
+            android:name=".ChartActivity"
+            android:theme="@style/Theme.Material3.Light.NoActionBar"
+            android:exported="true" />
     </application>
 </manifest>

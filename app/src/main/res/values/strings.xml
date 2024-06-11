@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MoneyTrack_newest</string>
+    <string name="app_name">MoneyTrack App</string>
     <string name="login">Login</string>
     <string name="email">Email</string>
     <string name="password">password</string>
