@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/user_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User Email"
+        android:layout_marginBottom="16dp" />
+
+    <Button
+        android:id="@+id/btn_add_spending"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Spending" />
+
+    <Button
+        android:id="@+id/btn_view_spendings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Spendings"
+        android:layout_marginTop="16dp" />
+
+    <Button
+        android:id="@+id/btn_add_income"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Income" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="btn_add_spending" type="id" />
+    <item name="btn_view_spendings" type="id" />
+    <item name="btn_logout" type="id" />
+    <item name="buttonSave" type="id" />
+    <item name="editTextDescription" type="id" />
+    <item name="editTextAmount" type="id" />
+</resources>
