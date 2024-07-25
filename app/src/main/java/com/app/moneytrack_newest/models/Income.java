@@ -5,16 +5,18 @@ public class Income {
     private String amount;
     private String description;
     private String userEmail;
+    private String category; // Neues Feld für die Kategorie
 
     public Income() {
         // Default constructor required for calls to DataSnapshot.getValue(Income.class)
     }
 
-    public Income(String id, String amount, String description, String userEmail) {
+    public Income(String id, String amount, String description, String userEmail, String category) {
         this.id = id;
         this.amount = amount;
         this.description = description;
         this.userEmail = userEmail;
+        this.category = category;
     }
 
     // Getters and setters for all fields
@@ -48,5 +50,13 @@ public class Income {
 
     public void setUserEmail(String userEmail) {
         this.userEmail = userEmail;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

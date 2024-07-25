@@ -7,4 +7,21 @@
     <string name="click_to_login">Click to login</string>
     <string name="click_to_register">Click to register</string>
     <string name="logout">Logout</string>
+
+
+
+    <!-- Kategorien für Spendings -->
+    <string-array name="spending_categories">
+        <item>Transport</item>
+        <item>Essen</item>
+        <item>Hobby</item>
+        <item>Sonstiges</item>
+    </string-array>
+
+    <!-- Kategorien für Income -->
+    <string-array name="income_categories">
+        <item>Gehalt</item>
+        <item>Sonstiges</item>
+    </string-array>
+
 </resources>

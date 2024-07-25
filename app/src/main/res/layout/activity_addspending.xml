@@ -1,29 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="16dp"
+    tools:context=".AddSpendingActivity">
+
 
     <EditText
         android:id="@+id/editTextAmount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="ausgegebener Betrag in €"
-        android:inputType="numberDecimal" />
+        android:hint="Amount" />
 
     <EditText
         android:id="@+id/editTextDescription"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Beschreibung"
-        android:layout_marginTop="16dp" />
+        android:hint="Description"
+        android:layout_marginTop="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerCategory"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp" />
 
     <Button
-        android:id="@+id/buttonSave"
-        android:layout_width="wrap_content"
+        android:id="@+id/buttonAddSpending"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Save"
+        android:text="Add Spending"
         android:layout_marginTop="16dp" />
 
     <Button
@@ -31,6 +39,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="⬅️ Go Back"
-        android:layout_gravity="center_horizontal"
-        android:paddingTop="16dp"/>
+        android:layout_marginBottom="16dp" />
 </LinearLayout>

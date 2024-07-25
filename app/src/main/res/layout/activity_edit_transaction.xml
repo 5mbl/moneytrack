@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    tools:context=".AddIncomeActivity">
-
+    tools:context=".EditTransactionActivity">
 
     <EditText
         android:id="@+id/editTextAmount"
@@ -21,23 +20,18 @@
         android:hint="Description"
         android:layout_marginTop="8dp" />
 
-    <Spinner
-        android:id="@+id/spinnerCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp" />
-
     <Button
-        android:id="@+id/buttonAddIncome"
+        android:id="@+id/buttonUpdate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add Income"
+        android:text="Update"
         android:layout_marginTop="16dp" />
 
+    <!-- Go Back Button -->
     <Button
         android:id="@+id/buttonGoBack"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="⬅️ Go Back"
-        android:layout_marginBottom="16dp" />
+        android:layout_marginTop="8dp" />
 </LinearLayout>

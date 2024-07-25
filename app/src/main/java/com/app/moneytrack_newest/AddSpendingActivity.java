@@ -1,33 +1,28 @@
 package com.app.moneytrack_newest;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.moneytrack_newest.helpers.SpendingDatabaseHelper;
 import com.app.moneytrack_newest.models.Spending;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AddSpendingActivity extends AppCompatActivity {
 
-    private static final String TAG = "AddSpendingActivity";
-
-    EditText editTextAmount, editTextDescription;
-    Button buttonSave;
-
-    SpendingDatabaseHelper spendingDatabaseHelper;
-    FirebaseAuth auth;
+    private EditText editTextAmount, editTextDescription;
+    private Spinner spinnerCategory;
+    private Button buttonAddSpending, buttonGoBack;
+    private FirebaseFirestore db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,69 +31,57 @@ public class AddSpendingActivity extends AppCompatActivity {
 
         editTextAmount = findViewById(R.id.editTextAmount);
         editTextDescription = findViewById(R.id.editTextDescription);
-        buttonSave = findViewById(R.id.buttonSave);
+        spinnerCategory = findViewById(R.id.spinnerCategory);
+        buttonAddSpending = findViewById(R.id.buttonAddSpending);
+        buttonGoBack = findViewById(R.id.buttonGoBack);
+        db = FirebaseFirestore.getInstance();
 
-        spendingDatabaseHelper = new SpendingDatabaseHelper();
-        auth = FirebaseAuth.getInstance();
+        // Initialisiere den Spinner mit Kategorien und einem Platzhalter
+        List<String> categories = new ArrayList<>();
+        categories.add("Kategorie auswählen");
+        categories.add("Transport");
+        categories.add("Essen");
+        categories.add("Hobby");
+        categories.add("Sonstiges");
 
-        buttonSave.setOnClickListener(new View.OnClickListener() {
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerCategory.setAdapter(adapter);
+
+        buttonAddSpending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                saveSpending();
+                addSpending();
             }
         });
 
-        Button buttonGoBack = findViewById(R.id.buttonGoBack);
         buttonGoBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddSpendingActivity.this, MainMenuActivity.class);
-                startActivity(intent);
-                finish();
+                finish(); // Beendet die aktuelle Aktivität und geht zurück zur vorherigen Aktivität
             }
         });
     }
 
-    private void saveSpending() {
+    private void addSpending() {
         String amount = editTextAmount.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
+        String category = spinnerCategory.getSelectedItem().toString();
+        String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        if (TextUtils.isEmpty(amount)) {
-            Toast.makeText(this, "Please enter amount", Toast.LENGTH_SHORT).show();
+        if (amount.isEmpty() || description.isEmpty() || category.equals("Kategorie auswählen")) {
+            Toast.makeText(this, "Bitte alle Felder ausfüllen und eine Kategorie auswählen", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(description)) {
-            Toast.makeText(this, "Please enter description", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        String id = db.collection("Spendings").document().getId();
+        Spending spending = new Spending(id, amount, description, userEmail, category);
 
-        FirebaseUser user = auth.getCurrentUser();
-        if (user == null) {
-            Toast.makeText(this, "User not authenticated", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        String userEmail = user.getEmail();
-        String id = spendingDatabaseHelper.getSpendings().document().getId();
-        if (id == null) {
-            Toast.makeText(this, "Failed to generate ID", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        Spending spending = new Spending(id, amount, description, userEmail);
-
-        spendingDatabaseHelper.addSpending(spending).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful()) {
-                    Toast.makeText(AddSpendingActivity.this, "Spending saved", Toast.LENGTH_SHORT).show();
+        db.collection("Spendings").document(id).set(spending)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(AddSpendingActivity.this, "Spending added", Toast.LENGTH_SHORT).show();
                     finish();
-                } else {
-                    Log.e(TAG, "Error saving spending", task.getException());
-                    Toast.makeText(AddSpendingActivity.this, "Failed to save spending", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+                })
+                .addOnFailureListener(e -> Toast.makeText(AddSpendingActivity.this, "Error: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 }

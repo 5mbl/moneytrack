@@ -28,7 +28,6 @@ public class ViewTransactionsActivity extends AppCompatActivity {
 
     private static final String TAG = "ViewTransactionsActivity";
 
-    private RecyclerView recyclerViewExpenses;
     private RecyclerView recyclerViewIncome;
     private TransactionAdapter expensesAdapter;
     private TransactionAdapter incomeAdapter;
@@ -43,7 +42,7 @@ public class ViewTransactionsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_transactions);
 
-        recyclerViewExpenses = findViewById(R.id.recyclerViewExpenses);
+        RecyclerView recyclerViewExpenses = findViewById(R.id.recyclerViewExpenses);
         recyclerViewIncome = findViewById(R.id.recyclerViewIncome);
         Button buttonGoBack = findViewById(R.id.buttonGoBack);
 
@@ -53,8 +52,8 @@ public class ViewTransactionsActivity extends AppCompatActivity {
         expensesList = new ArrayList<>();
         incomeList = new ArrayList<>();
 
-        expensesAdapter = new TransactionAdapter(expensesList, true);
-        incomeAdapter = new TransactionAdapter(incomeList, false);
+        expensesAdapter = new TransactionAdapter(expensesList, true, this);
+        incomeAdapter = new TransactionAdapter(incomeList, false, this);
 
         recyclerViewExpenses.setAdapter(expensesAdapter);
         recyclerViewIncome.setAdapter(incomeAdapter);
@@ -74,6 +73,12 @@ public class ViewTransactionsActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadTransactions(); // Transaktionen neu laden, wenn die Aktivität wieder in den Vordergrund kommt
+    }
+
     private void loadTransactions() {
         FirebaseUser user = auth.getCurrentUser();
         if (user == null) {
@@ -91,6 +96,7 @@ public class ViewTransactionsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            expensesList.clear(); // Leere die Liste, bevor neue Daten hinzugefügt werden
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Transaction spending = document.toObject(Transaction.class);
                                 spending.setType("Spending");
@@ -109,6 +115,7 @@ public class ViewTransactionsActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
+                            incomeList.clear(); // Leere die Liste, bevor neue Daten hinzugefügt werden
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 Transaction income = document.toObject(Transaction.class);
                                 income.setType("Income");
@@ -120,5 +127,12 @@ public class ViewTransactionsActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    public void startEditTransactionActivity(String transactionId, String transactionType) {
+        Intent intent = new Intent(this, EditTransactionActivity.class);
+        intent.putExtra("transactionId", transactionId);
+        intent.putExtra("transactionType", transactionType);
+        startActivity(intent);
     }
 }

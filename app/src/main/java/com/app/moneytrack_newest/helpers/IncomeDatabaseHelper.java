@@ -19,10 +19,13 @@ public class IncomeDatabaseHelper {
         return collectionReference.document(income.getId()).set(income);
     }
 
+
+    // noch nicht implementiert in activity
     public Task<Void> updateIncome(String id, Map<String, Object> updates) {
         return collectionReference.document(id).update(updates);
     }
 
+    // noch nicht implementiert in activity
     public Task<Void> deleteIncome(String id) {
         return collectionReference.document(id).delete();
     }

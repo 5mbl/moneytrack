@@ -19,10 +19,12 @@ public class SpendingDatabaseHelper {
         return collectionReference.document(spending.getId()).set(spending);
     }
 
+    // noch nicht implementiert in activity
     public Task<Void> updateSpending(String id, Map<String, Object> updates) {
         return collectionReference.document(id).update(updates);
     }
 
+    // noch nicht implementiert in activity
     public Task<Void> deleteSpending(String id) {
         return collectionReference.document(id).delete();
     }
