@@ -10,18 +10,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.moneytrack_newest.models.Spending;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddSpendingActivity extends AppCompatActivity {
 
     private EditText editTextAmount, editTextDescription;
     private Spinner spinnerCategory;
-    private Button buttonAddSpending, buttonGoBack;
+    private Button buttonAddSpending;
+    private FirebaseAuth auth;
     private FirebaseFirestore db;
 
     @Override
@@ -33,18 +33,13 @@ public class AddSpendingActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         spinnerCategory = findViewById(R.id.spinnerCategory);
         buttonAddSpending = findViewById(R.id.buttonAddSpending);
-        buttonGoBack = findViewById(R.id.buttonGoBack);
+
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Initialisiere den Spinner mit Kategorien und einem Platzhalter
-        List<String> categories = new ArrayList<>();
-        categories.add("Kategorie auswählen");
-        categories.add("Transport");
-        categories.add("Essen");
-        categories.add("Hobby");
-        categories.add("Sonstiges");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        // Spinner-Adapter hinzufügen
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.spending_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
@@ -54,28 +49,27 @@ public class AddSpendingActivity extends AppCompatActivity {
                 addSpending();
             }
         });
-
-        buttonGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Beendet die aktuelle Aktivität und geht zurück zur vorherigen Aktivität
-            }
-        });
     }
 
     private void addSpending() {
         String amount = editTextAmount.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
         String category = spinnerCategory.getSelectedItem().toString();
-        String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        if (amount.isEmpty() || description.isEmpty() || category.equals("Kategorie auswählen")) {
-            Toast.makeText(this, "Bitte alle Felder ausfüllen und eine Kategorie auswählen", Toast.LENGTH_SHORT).show();
+        if (amount.isEmpty() || category.equals(getString(R.string.select_category_prompt))) {
+            Toast.makeText(this, "Amount and category are required", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        String userEmail = auth.getCurrentUser().getEmail();
         String id = db.collection("Spendings").document().getId();
-        Spending spending = new Spending(id, amount, description, userEmail, category);
+
+        Map<String, Object> spending = new HashMap<>();
+        spending.put("id", id);
+        spending.put("amount", amount);
+        spending.put("description", description);
+        spending.put("category", category);
+        spending.put("userEmail", userEmail);
 
         db.collection("Spendings").document(id).set(spending)
                 .addOnSuccessListener(aVoid -> {

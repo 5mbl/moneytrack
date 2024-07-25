@@ -5,23 +5,23 @@ public class Transaction {
     private String amount;
     private String description;
     private String type; // "Income" or "Spending"
+    private String category; // Hinzugefügte Kategorie
     private String userEmail;
-    private String category; // Neues Feld für Kategorie
 
     public Transaction() {
         // Default constructor required for calls to DataSnapshot.getValue(Transaction.class)
     }
 
-    public Transaction(String id, String amount, String description, String type, String userEmail, String category) {
+    public Transaction(String id, String amount, String description, String type, String category, String userEmail) {
         this.id = id;
         this.amount = amount;
         this.description = description;
         this.type = type;
+        this.category = category; // Initialisierung der Kategorie
         this.userEmail = userEmail;
-        this.category = category;
     }
 
-    // Getters and setters for all fields
+    // Getter und Setter für alle Felder
     public String getId() {
         return id;
     }
@@ -54,19 +54,19 @@ public class Transaction {
         this.type = type;
     }
 
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
     public String getCategory() {
         return category;
     }
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 }

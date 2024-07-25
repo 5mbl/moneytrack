@@ -10,18 +10,18 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.app.moneytrack_newest.models.Income;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AddIncomeActivity extends AppCompatActivity {
 
     private EditText editTextAmount, editTextDescription;
     private Spinner spinnerCategory;
-    private Button buttonAddIncome, buttonGoBack;
+    private Button buttonAddIncome;
+    private FirebaseAuth auth;
     private FirebaseFirestore db;
 
     @Override
@@ -33,16 +33,13 @@ public class AddIncomeActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         spinnerCategory = findViewById(R.id.spinnerCategory);
         buttonAddIncome = findViewById(R.id.buttonAddIncome);
-        buttonGoBack = findViewById(R.id.buttonGoBack);
+
+        auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Initialisiere den Spinner mit Kategorien und einem Platzhalter
-        List<String> categories = new ArrayList<>();
-        categories.add("Kategorie auswählen");
-        categories.add("Gehalt");
-        categories.add("Sonstiges");
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, categories);
+        // Spinner-Adapter hinzufügen
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.income_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerCategory.setAdapter(adapter);
 
@@ -52,28 +49,27 @@ public class AddIncomeActivity extends AppCompatActivity {
                 addIncome();
             }
         });
-
-        buttonGoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish(); // Beendet die aktuelle Aktivität und geht zurück zur vorherigen Aktivität
-            }
-        });
     }
 
     private void addIncome() {
         String amount = editTextAmount.getText().toString().trim();
         String description = editTextDescription.getText().toString().trim();
         String category = spinnerCategory.getSelectedItem().toString();
-        String userEmail = FirebaseAuth.getInstance().getCurrentUser().getEmail();
 
-        if (amount.isEmpty() || description.isEmpty() || category.equals("Kategorie auswählen")) {
-            Toast.makeText(this, "Bitte alle Felder ausfüllen und eine Kategorie auswählen", Toast.LENGTH_SHORT).show();
+        if (amount.isEmpty() || category.equals(getString(R.string.select_category_prompt))) {
+            Toast.makeText(this, "Amount and category are required", Toast.LENGTH_SHORT).show();
             return;
         }
 
+        String userEmail = auth.getCurrentUser().getEmail();
         String id = db.collection("Income").document().getId();
-        Income income = new Income(id, amount, description, userEmail, category);
+
+        Map<String, Object> income = new HashMap<>();
+        income.put("id", id);
+        income.put("amount", amount);
+        income.put("description", description);
+        income.put("category", category);
+        income.put("userEmail", userEmail);
 
         db.collection("Income").document(id).set(income)
                 .addOnSuccessListener(aVoid -> {

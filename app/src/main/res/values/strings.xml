@@ -10,16 +10,18 @@
 
 
 
-    <!-- Kategorien für Spendings -->
+    <string name="select_category_prompt">Select Category</string>
+
     <string-array name="spending_categories">
+        <item>Select Category</item>
         <item>Transport</item>
         <item>Essen</item>
         <item>Hobby</item>
         <item>Sonstiges</item>
     </string-array>
 
-    <!-- Kategorien für Income -->
     <string-array name="income_categories">
+        <item>Select Category</item>
         <item>Gehalt</item>
         <item>Sonstiges</item>
     </string-array>
