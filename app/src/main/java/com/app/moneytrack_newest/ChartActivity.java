@@ -6,10 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.IBarDataSet;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.FirebaseAuth;
@@ -20,11 +24,14 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChartActivity extends AppCompatActivity {
 
     private BarChart chart;
+    private PieChart pieChart;
     private MaterialButton btnGoBack;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -35,6 +42,7 @@ public class ChartActivity extends AppCompatActivity {
         setContentView(R.layout.activity_chart);
 
         chart = findViewById(R.id.chart);
+        pieChart = findViewById(R.id.pie_chart);
         btnGoBack = findViewById(R.id.btn_go_back);
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
@@ -112,13 +120,22 @@ public class ChartActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             double totalSpending = 0;
+                            Map<String, Double> categoryTotals = new HashMap<>();
                             for (DocumentSnapshot document : task.getResult()) {
                                 String amountStr = document.getString("amount");
-                                if (amountStr != null) {
-                                    totalSpending += Double.parseDouble(amountStr);
+                                String category = document.getString("category");
+                                if (amountStr != null && category != null) {
+                                    double amount = Double.parseDouble(amountStr);
+                                    totalSpending += amount;
+                                    if (categoryTotals.containsKey(category)) {
+                                        categoryTotals.put(category, categoryTotals.get(category) + amount);
+                                    } else {
+                                        categoryTotals.put(category, amount);
+                                    }
                                 }
                             }
                             setData(totalIncome, totalSpending);
+                            setPieChartData(categoryTotals);
                         } else {
                             // Handle error
                         }
@@ -151,5 +168,22 @@ public class ChartActivity extends AppCompatActivity {
         }
 
         chart.invalidate(); // Refresh the chart
+    }
+
+    private void setPieChartData(Map<String, Double> categoryTotals) {
+        List<PieEntry> entries = new ArrayList<>();
+        for (Map.Entry<String, Double> entry : categoryTotals.entrySet()) {
+            entries.add(new PieEntry(entry.getValue().floatValue(), entry.getKey()));
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "Spendings by Category");
+        dataSet.setColors(ContextCompat.getColor(this, android.R.color.holo_blue_light),
+                ContextCompat.getColor(this, android.R.color.holo_green_light),
+                ContextCompat.getColor(this, android.R.color.holo_orange_light),
+                ContextCompat.getColor(this, android.R.color.holo_red_light));
+        PieData data = new PieData(dataSet);
+        data.setValueTextSize(10f);
+        pieChart.setData(data);
+        pieChart.invalidate(); // Refresh the chart
     }
 }
