@@ -14,17 +14,17 @@
         android:text="Amount" />
 
     <TextView
-        android:id="@+id/textViewType"
+        android:id="@+id/textViewDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Type" />
+        android:layout_weight="2"
+        android:text="Description" />
 
     <TextView
         android:id="@+id/textViewCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:text="Category" />
 
     <Button
