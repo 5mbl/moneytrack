@@ -36,9 +36,8 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     public void onBindViewHolder(@NonNull TransactionViewHolder holder, int position) {
         Transaction transaction = transactionList.get(position);
         holder.textViewAmount.setText(transaction.getAmount());
-        holder.textViewDescription.setText(transaction.getDescription());
         holder.textViewType.setText(transaction.getType());
-        holder.textViewCategory.setText(transaction.getCategory()); // Kategorie anzeigen
+        holder.textViewCategory.setText(transaction.getCategory());
 
         if (isExpense) {
             holder.itemView.setBackgroundColor(holder.itemView.getResources().getColor(R.color.expense_background));
@@ -60,15 +59,14 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     public static class TransactionViewHolder extends RecyclerView.ViewHolder {
-        TextView textViewAmount, textViewDescription, textViewType, textViewCategory; // TextView für Kategorie
+        TextView textViewAmount, textViewType, textViewCategory;
         Button buttonEdit;
 
         public TransactionViewHolder(@NonNull View itemView) {
             super(itemView);
             textViewAmount = itemView.findViewById(R.id.textViewAmount);
-            textViewDescription = itemView.findViewById(R.id.textViewDescription);
             textViewType = itemView.findViewById(R.id.textViewType);
-            textViewCategory = itemView.findViewById(R.id.textViewCategory); // Initialisiere TextView für Kategorie
+            textViewCategory = itemView.findViewById(R.id.textViewCategory);
             buttonEdit = itemView.findViewById(R.id.buttonEdit);
         }
     }
