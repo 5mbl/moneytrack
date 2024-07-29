@@ -1,4 +1,6 @@
-<div align="center"><img src="https://upload.wikimedia.org/wikipedia/de/thumb/9/90/Hochschule_f%C3%BCr_Wirtschaft_und_Recht_Berlin_logo.svg/1200px-Hochschule_f%C3%BCr_Wirtschaft_und_Recht_Berlin_logo.svg.png?20090401201013"></div>
+<div align="center">
+    <img src="https://upload.wikimedia.org/wikipedia/de/thumb/9/90/Hochschule_f%C3%BCr_Wirtschaft_und_Recht_Berlin_logo.svg/1200px-Hochschule_f%C3%BCr_Wirtschaft_und_Recht_Berlin_logo.svg.png?20090401201013" width="300" height="150">
+</div>
 <h1 align="center">Money Track</h1>
 <p align="center"><strong>MoneyTrack is a mobile app that helps users track their expenses and incomes, providing financial records, and data visualization features</strong>
 <br>This project is built as part of the course "App Development with Android" by Professor Holger Zimmerman</p>
