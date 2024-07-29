@@ -68,7 +68,7 @@ Finished ✅
 <h2>Creators</h2>
 
 - Serdar Palaoglu (Matrikelnummer: 77211970278)
-- Wladimir Evdokimov (Matrikelnummer: XXXX)
+- Wladimir Evdokimov (Matrikelnummer: 77211970281)
 
 
 <h2>App Screenshot</h2>
