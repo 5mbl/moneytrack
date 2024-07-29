@@ -54,7 +54,9 @@ cd MoneyTrack
    - Connect your Android device to your computer or set up an Android emulator.
    - Click the "Run" button in Android Studio or go to `Run > Run 'app'`.
   
-Alternatively: You can also run this program directly from the created APK file located in the root directory of this project release/app-release.apk. [here]([URL](https://github.com/5mbl/moneytrack/blob/2f2597432d0a7cf3ee21a3f68891a681043cb27e/release/app-release.apk))
+Alternatively: You can also run this program directly from the created APK file located in the root directory of this project release/app-release.apk. 
+
+[click here to get to the apk file]([URL](https://github.com/5mbl/moneytrack/blob/2f2597432d0a7cf3ee21a3f68891a681043cb27e/release/app-release.apk))
 
 
 
