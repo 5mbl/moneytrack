@@ -23,7 +23,7 @@ To install and run the MoneyTrack app, follow these steps:
 
 1. Clone the Repository
 ```
-git clone https://github.com/your-repository/MoneyTrack.git
+git clone https://github.com/5mbl/moneytrack.git
 cd MoneyTrack
 ```
 
