@@ -20,7 +20,7 @@ public class AddSpendingActivity extends AppCompatActivity {
 
     private EditText editTextAmount, editTextDescription;
     private Spinner spinnerCategory;
-    private Button buttonAddSpending;
+    private Button buttonAddSpending, buttonGoBack;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
 
@@ -33,11 +33,11 @@ public class AddSpendingActivity extends AppCompatActivity {
         editTextDescription = findViewById(R.id.editTextDescription);
         spinnerCategory = findViewById(R.id.spinnerCategory);
         buttonAddSpending = findViewById(R.id.buttonAddSpending);
+        buttonGoBack = findViewById(R.id.buttonGoBack);
 
         auth = FirebaseAuth.getInstance();
         db = FirebaseFirestore.getInstance();
 
-        // Spinner-Adapter hinzufügen
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.spending_categories, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -47,6 +47,13 @@ public class AddSpendingActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 addSpending();
+            }
+        });
+
+        buttonGoBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
             }
         });
     }
