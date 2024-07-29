@@ -24,7 +24,6 @@ To install and run the MoneyTrack app, follow these steps:
 1. Clone the Repository
 ```
 git clone https://github.com/5mbl/moneytrack.git
-cd MoneyTrack
 ```
 
 2. **Open the Project in Android Studio:**
