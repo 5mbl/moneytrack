@@ -7,7 +7,7 @@
 <br>This project is built as part of the course "App Development with Android" by Professor Holger Zimmerman</p>
 <br/>
 
-![image](https://github.com/user-attachments/assets/63f1dda0-0615-4128-9dbd-b2669d3380cb){:width="400px"}
+![image](https://github.com/user-attachments/assets/63f1dda0-0615-4128-9dbd-b2669d3380cb){:width="200px"}
 
 
 <div align="center"><img src="demo.gif"></img></div>
