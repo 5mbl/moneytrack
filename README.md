@@ -1,1 +1,63 @@
-Firebase Console: https://console.firebase.google.com/u/0/project/moneytrack-52928/overview
+<div align="center"><img src="[app/src/main/res/mipmap-xhdpi/ic_launcher.png](https://pbs.twimg.com/profile_images/459013810364248064/IH29GiQh_400x400.png)"></div>
+<h1 align="center">Money Track</h1>
+<p align="center"><strong>MoneyTrack is a mobile app that helps users track their expenses and incomes, providing financial records, and data visualization features</strong>
+<br>This project is built as part of the course "App Development with Android" by Professor Holger Zimmerman</p>
+<br/>
+<div align="center"><img src="demo.gif"></img></div>
+
+<h2>Installation</h2>
+
+To install and run the MoneyTrack app, follow these steps:
+
+Prerequisites
+Android Studio installed on your machine.
+A configured Firebase project with Firestore and Authentication enabled.
+Java Development Kit (JDK) installed.
+Git installed.
+
+<h3>Steps</h3>
+
+1. Clone the Repository
+```
+git clone https://github.com/your-repository/MoneyTrack.git
+cd MoneyTrack
+```
+
+2. **Open the Project in Android Studio:**
+
+   - Open Android Studio.
+   - Select "Open an existing Android Studio project".
+   - Navigate to the cloned repository directory and click "OK".
+
+3. **Configure Firebase:**
+
+   - Go to the Firebase Console and create a new project (if you haven't already).
+   - Add an Android app to your Firebase project with your app's package name (`com.app.moneytrack_newest`).
+   - Download the `google-services.json` file from the Firebase Console.
+   - Place the `google-services.json` file in the `app` directory of your project.
+
+4. **Sync Project with Gradle Files:**
+
+   - In Android Studio, click on `File > Sync Project with Gradle Files` to ensure all dependencies are correctly set up.
+
+5. **Build the APK:**
+
+   - Go to `Build > Build Bundle(s) / APK(s) > Build APK(s)`.
+   - Wait for the build to complete. The generated APK file will be located in the `app/build/outputs/apk/` directory.
+
+6. **Run the App:**
+
+   - Connect your Android device to your computer or set up an Android emulator.
+   - Click the "Run" button in Android Studio or go to `Run > Run 'app'`.
+  
+Alternatively: You can also run this program directly from the created APK file located in the root directory of this project.
+
+
+<h2>Project status</h2>
+Finished ✅
+
+<h2>Creators</h2>
+
+- Serdar Palaoglu (Matrikelnummer: 77211970278)
+- Wladimir Evdokimov (Matrikelnummer: XXXX)
+
