@@ -13,10 +13,10 @@
 To install and run the MoneyTrack app, follow these steps:
 
 Prerequisites
-Android Studio installed on your machine.
-A configured Firebase project with Firestore and Authentication enabled.
-Java Development Kit (JDK) installed.
-Git installed.
+- Android Studio installed on your machine.
+- A configured Firebase project with Firestore and Authentication enabled.
+- Java Development Kit (JDK) installed.
+- Git installed.
 
 <h3>Steps</h3>
 
