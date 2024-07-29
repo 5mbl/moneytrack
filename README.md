@@ -69,6 +69,6 @@ Finished ✅
 
 <h2>App Screenshot</h2>
 
-![image](https://github.com/user-attachments/assets/63f1dda0-0615-4128-9dbd-b2669d3380cb){:width="200px"}
+<img src="https://github.com/user-attachments/assets/63f1dda0-0615-4128-9dbd-b2669d3380cb" width="200">
 
 
