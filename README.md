@@ -68,6 +68,10 @@ Finished ✅
 - Serdar Palaoglu (Matrikelnummer: 77211970278)
 - Wladimir Evdokimov (Matrikelnummer: XXXX)
 
+- <h2>Flowchart (dt.:Ablaufdiagramm)</h2>
+
+Due to low image quality, you can view our flowchart using this view-only link: [Flowchart on Miro](https://miro.com/app/board/uXjVKugX6KE=/?share_link_id=472399161093)
+
 
 <h2>App Screenshot</h2>
 
