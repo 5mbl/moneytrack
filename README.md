@@ -56,7 +56,7 @@ cd MoneyTrack
   
 Alternatively: You can also run this program directly from the created APK file located in the root directory of this project release/app-release.apk. 
 
-[click here to get to the apk file]([URL](https://github.com/5mbl/moneytrack/blob/2f2597432d0a7cf3ee21a3f68891a681043cb27e/release/app-release.apk))
+[click here to get to the apk file](https://github.com/5mbl/moneytrack/blob/2f2597432d0a7cf3ee21a3f68891a681043cb27e/release/app-release.apk)
 
 
 
