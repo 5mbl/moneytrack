@@ -58,7 +58,9 @@ Alternatively: You can also run this program directly from the created APK file 
 
 [click here to get to the apk file](https://github.com/5mbl/moneytrack/blob/2f2597432d0a7cf3ee21a3f68891a681043cb27e/release/app-release.apk)
 
+<h2>Flowchart (dt.:Ablaufdiagramm)</h2>
 
+Due to low image quality, you can view our flowchart using this view-only link: [Flowchart on Miro](https://miro.com/app/board/uXjVKugX6KE=/?share_link_id=472399161093)
 
 <h2>Project status</h2>
 Finished ✅
@@ -67,10 +69,6 @@ Finished ✅
 
 - Serdar Palaoglu (Matrikelnummer: 77211970278)
 - Wladimir Evdokimov (Matrikelnummer: XXXX)
-
-- <h2>Flowchart (dt.:Ablaufdiagramm)</h2>
-
-Due to low image quality, you can view our flowchart using this view-only link: [Flowchart on Miro](https://miro.com/app/board/uXjVKugX6KE=/?share_link_id=472399161093)
 
 
 <h2>App Screenshot</h2>
